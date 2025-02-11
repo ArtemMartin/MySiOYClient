@@ -41,6 +41,10 @@ public class ClientFrame extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         poleMessage = new javax.swing.JTextArea();
         btnOtpravit = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        poleIP = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        poleName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ClientArtemida");
@@ -84,6 +88,20 @@ public class ClientFrame extends javax.swing.JFrame {
         btnOtpravit.setForeground(new java.awt.Color(0, 0, 0));
         btnOtpravit.setText("<html><center>О<br>Т<br>П<br>Р<br>А<br>В<br>И<br>Т<br>Ь</center></html>");
 
+        jLabel4.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        jLabel4.setText("IP Server");
+
+        poleIP.setBackground(new java.awt.Color(255, 255, 102));
+        poleIP.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        poleIP.setForeground(new java.awt.Color(204, 0, 0));
+
+        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jLabel5.setText("Позывной");
+
+        poleName.setBackground(new java.awt.Color(255, 255, 153));
+        poleName.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        poleName.setForeground(new java.awt.Color(204, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,15 +114,23 @@ public class ClientFrame extends javax.swing.JFrame {
                     .addComponent(btnOtpravit, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(poleStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnIskatServer, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2))
+                        .addComponent(btnIskatServer, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(poleIP, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(poleName, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -114,13 +140,17 @@ public class ClientFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(poleStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIskatServer))
+                    .addComponent(btnIskatServer)
+                    .addComponent(jLabel4)
+                    .addComponent(poleIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(poleName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,6 +198,14 @@ public class ClientFrame extends javax.swing.JFrame {
         });
     }
 
+    public JTextField getPoleIP() {
+        return poleIP;
+    }
+
+    public JTextField getPoleName() {
+        return poleName;
+    }
+
     public JButton getBtnIskatServer() {
         return btnIskatServer;
     }
@@ -194,10 +232,14 @@ public class ClientFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea poleChat;
+    private javax.swing.JTextField poleIP;
     private javax.swing.JTextArea poleMessage;
+    private javax.swing.JTextField poleName;
     private javax.swing.JTextField poleStatus;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,6 @@ import java.util.Date;
 
 public class Client {
 
-    private static final String ADRESS = "192.168.1.68";
     static final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private static final ClientFrame clientFrame = new ClientFrame();
     private static Socket socket;
@@ -29,12 +28,12 @@ public class Client {
 
     public Client(String serverAddress, int serverPort) throws IOException {
         this.socket = new Socket(serverAddress, serverPort);
-        this.out = new PrintWriter(new OutputStreamWriter( socket.getOutputStream(),"UTF-8"), true);
-        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
+        this.out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
+        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
     }
 
     public String getTimeName() {
-        return dateFormat.format(new Date()) + ": Ангара -> ";
+        return dateFormat.format(new Date()) + ": " + clientFrame.getPoleName().getText() + " -> ";
     }
 
     // Метод для проверки состояния соединения
@@ -103,13 +102,13 @@ public class Client {
 
     private void connect() {
         try {
-            Client client = new Client(ADRESS, 5252);
+            Client client = new Client(clientFrame.getPoleIP().getText(), 5252);
             client.listenToServer();
             //отправить имя
-            client.sendMessage("Ангара");
+            client.sendMessage(clientFrame.getPoleName().getText());
             clientFrame.getPoleStatus().setText("Есть соединение...");
         } catch (UnknownHostException e) {
-            clientFrame.getPoleStatus().setText("Unknown host: " + ADRESS);
+            clientFrame.getPoleStatus().setText("Unknown host: " + clientFrame.getPoleIP().getText());
         } catch (IOException e) {
             clientFrame.getPoleStatus().setText("Unable to connect to server: " + e.getMessage());
         }
