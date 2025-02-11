@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class Client {
 
-    private static final String ADRESS = "192.168.0.100";
+    private static final String ADRESS = "192.168.1.68";
     static final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private static final ClientFrame clientFrame = new ClientFrame();
     private static Socket socket;
@@ -29,8 +29,8 @@ public class Client {
 
     public Client(String serverAddress, int serverPort) throws IOException {
         this.socket = new Socket(serverAddress, serverPort);
-        this.out = new PrintWriter(socket.getOutputStream(), true);
-        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.out = new PrintWriter(new OutputStreamWriter( socket.getOutputStream(),"UTF-8"), true);
+        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream(),"UTF-8"));
     }
 
     public String getTimeName() {
