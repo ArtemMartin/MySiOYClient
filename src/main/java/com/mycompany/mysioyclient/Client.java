@@ -8,6 +8,7 @@ package com.mycompany.mysioyclient;
  *
  * @author Артем
  */
+import java.awt.Color;
 import java.io.*;
 import java.net.*;
 import java.text.DateFormat;
@@ -88,6 +89,7 @@ public class Client {
                     }
                     if (!isConnectionAlive()) {
                         clientFrame.getPoleStatus().setText("Connection lost. Reconnecting...");
+                        clientFrame.getPoleStatus().setBackground(new Color(255,102,102));
                         closeResources();
                         connect();
                     }
@@ -107,10 +109,13 @@ public class Client {
             //отправить имя
             client.sendMessage(clientFrame.getPoleName().getText());
             clientFrame.getPoleStatus().setText("Есть соединение...");
+            clientFrame.getPoleStatus().setBackground(new Color(153,255,153));
         } catch (UnknownHostException e) {
             clientFrame.getPoleStatus().setText("Unknown host: " + clientFrame.getPoleIP().getText());
+            clientFrame.getPoleStatus().setBackground(new Color(255,102,102));
         } catch (IOException e) {
             clientFrame.getPoleStatus().setText("Unable to connect to server: " + e.getMessage());
+            clientFrame.getPoleStatus().setBackground(new Color(255,102,102));
         }
     }
 

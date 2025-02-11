@@ -52,7 +52,7 @@ public class ClientFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Статус");
 
-        poleStatus.setBackground(new java.awt.Color(153, 255, 153));
+        poleStatus.setBackground(new java.awt.Color(255, 102, 102));
         poleStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
