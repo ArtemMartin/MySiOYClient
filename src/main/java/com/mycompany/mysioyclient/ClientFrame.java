@@ -57,7 +57,11 @@ public class ClientFrame extends javax.swing.JFrame {
         poleChat.setBackground(new java.awt.Color(255, 204, 102));
         poleChat.setColumns(20);
         poleChat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        poleChat.setForeground(new java.awt.Color(0, 0, 102));
+        poleChat.setLineWrap(true);
         poleChat.setRows(5);
+        poleChat.setToolTipText("");
+        poleChat.setWrapStyleWord(true);
         jScrollPane1.setViewportView(poleChat);
 
         btnIskatServer.setBackground(new java.awt.Color(51, 255, 0));
@@ -71,6 +75,7 @@ public class ClientFrame extends javax.swing.JFrame {
         poleMessage.setBackground(new java.awt.Color(204, 204, 255));
         poleMessage.setColumns(20);
         poleMessage.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        poleMessage.setForeground(new java.awt.Color(102, 0, 0));
         poleMessage.setRows(5);
         jScrollPane2.setViewportView(poleMessage);
 

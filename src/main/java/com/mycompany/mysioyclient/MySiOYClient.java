@@ -4,7 +4,6 @@
 package com.mycompany.mysioyclient;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
@@ -20,12 +19,10 @@ public class MySiOYClient {
             client.connectToServer();
         });
         //отправить сообщениее
-        client.getClientFrame().getBtnOtpravit().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                client.sendMessage(client.getTimeName() + client.getClientFrame()
-                        .getPoleMessage());
-            }
+        client.getClientFrame().getBtnOtpravit().addActionListener((ActionEvent e) -> {
+            client.sendMessage(client.getTimeName() + client.getClientFrame()
+                    .getPoleMessage().getText());
+            client.getClientFrame().getPoleMessage().setText("");         
         });
     }
 }

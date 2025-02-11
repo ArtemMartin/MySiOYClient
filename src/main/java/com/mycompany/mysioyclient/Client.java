@@ -9,21 +9,20 @@ package com.mycompany.mysioyclient;
  * @author Артем
  */
 import java.io.*;
-import static java.lang.Thread.sleep;
 import java.net.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Client {
 
+    private static final String ADRESS = "192.168.0.100";
     static final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-    private final ClientFrame clientFrame = new ClientFrame();
+    private static final ClientFrame clientFrame = new ClientFrame();
     private static Socket socket;
-    private PrintWriter out;
-    private BufferedReader in;
+    private static PrintWriter out;
+    private static BufferedReader in;
+    private final AudioPlayer player = new AudioPlayer();
 
     public Client() {
     }
@@ -35,7 +34,7 @@ public class Client {
     }
 
     public String getTimeName() {
-        return dateFormat.format(new Date()) + ": Ангара";
+        return dateFormat.format(new Date()) + ": Ангара -> ";
     }
 
     // Метод для проверки состояния соединения
@@ -63,12 +62,22 @@ public class Client {
             String response;
             try {
                 while ((response = in.readLine()) != null) {
-                    clientFrame.getPoleChat().append(response);
+                    clientFrame.getPoleChat().append("\n" + response);
+                    cursorPoleChatVNiz();
+                    player.playAudio("razriv.wav");
+//                    player.close();
                 }
             } catch (IOException e) {
-                clientFrame.getPoleChat().append("Error reading from server: " + e.getMessage());
+                clientFrame.getPoleChat().append("\nError reading from server: " + e.getMessage());
+                cursorPoleChatVNiz();
             }
         }).start();
+    }
+
+    //перевод курсора вниз в поле чат
+    public void cursorPoleChatVNiz() {
+        clientFrame.getPoleChat().setCaretPosition(
+                clientFrame.getPoleChat().getDocument().getLength());
     }
 
     public void connectToServer() {
@@ -94,13 +103,13 @@ public class Client {
 
     private void connect() {
         try {
-            Client client = new Client("localhost", 5252);
+            Client client = new Client(ADRESS, 5252);
             client.listenToServer();
             //отправить имя
             client.sendMessage("Ангара");
             clientFrame.getPoleStatus().setText("Есть соединение...");
         } catch (UnknownHostException e) {
-            clientFrame.getPoleStatus().setText("Unknown host: " + "localhost");
+            clientFrame.getPoleStatus().setText("Unknown host: " + ADRESS);
         } catch (IOException e) {
             clientFrame.getPoleStatus().setText("Unable to connect to server: " + e.getMessage());
         }
