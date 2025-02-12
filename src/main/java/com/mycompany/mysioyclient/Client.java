@@ -108,7 +108,7 @@ public class Client {
 
     private void connect() {
         try {
-            Client client = new Client(clientFrame.getPoleIP().getText(), 5252);
+            Client client = new Client(clientFrame.getPoleIP().getText(), 59867);
             client.listenToServer();
             //отправить имя
             client.sendMessage(clientFrame.getPoleName().getText());
