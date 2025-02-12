@@ -23,6 +23,7 @@ public class Client {
     private static PrintWriter out;
     private static BufferedReader in;
     private final AudioPlayer player = new AudioPlayer();
+    private final Crypto crypto = new Crypto();
 
     public Client() {
     }
@@ -53,6 +54,8 @@ public class Client {
 
     // Метод для отправки сообщений на сервер
     public void sendMessage(String message) {
+        //закодировать сообщение
+        message = crypto.getCryptoMessage(message);
         out.println(message);
     }
 
@@ -62,10 +65,11 @@ public class Client {
             String response;
             try {
                 while ((response = in.readLine()) != null) {
+                    //раскодировать сообщение
+                    response = crypto.getDeCryptoMessage(response);
                     clientFrame.getPoleChat().append("\n" + response);
                     cursorPoleChatVNiz();
                     player.playAudio("razriv.wav");
-//                    player.close();
                 }
             } catch (IOException e) {
                 clientFrame.getPoleChat().append("\nError reading from server: " + e.getMessage());
@@ -89,7 +93,7 @@ public class Client {
                     }
                     if (!isConnectionAlive()) {
                         clientFrame.getPoleStatus().setText("Connection lost. Reconnecting...");
-                        clientFrame.getPoleStatus().setBackground(new Color(255,102,102));
+                        clientFrame.getPoleStatus().setBackground(new Color(255, 102, 102));
                         closeResources();
                         connect();
                     }
@@ -109,13 +113,13 @@ public class Client {
             //отправить имя
             client.sendMessage(clientFrame.getPoleName().getText());
             clientFrame.getPoleStatus().setText("Есть соединение...");
-            clientFrame.getPoleStatus().setBackground(new Color(153,255,153));
+            clientFrame.getPoleStatus().setBackground(new Color(153, 255, 153));
         } catch (UnknownHostException e) {
             clientFrame.getPoleStatus().setText("Unknown host: " + clientFrame.getPoleIP().getText());
-            clientFrame.getPoleStatus().setBackground(new Color(255,102,102));
+            clientFrame.getPoleStatus().setBackground(new Color(255, 102, 102));
         } catch (IOException e) {
             clientFrame.getPoleStatus().setText("Unable to connect to server: " + e.getMessage());
-            clientFrame.getPoleStatus().setBackground(new Color(255,102,102));
+            clientFrame.getPoleStatus().setBackground(new Color(255, 102, 102));
         }
     }
 
