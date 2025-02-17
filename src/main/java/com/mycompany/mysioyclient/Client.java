@@ -14,6 +14,7 @@ import java.net.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 public class Client {
 
@@ -72,8 +73,7 @@ public class Client {
                     player.playAudio("razriv.wav");
                 }
             } catch (IOException e) {
-                clientFrame.getPoleChat().append("\nError reading from server: " + e.getMessage());
-                cursorPoleChatVNiz();
+                Logger.getLogger(Client.class.getName()).info("line=76 " + e.getMessage());
             }
         }).start();
     }
@@ -108,7 +108,8 @@ public class Client {
 
     private void connect() {
         try {
-            Client client = new Client(clientFrame.getPoleIP().getText(), 59867);
+            Client client = new Client(clientFrame.getPoleIP().getText(),
+                    Integer.parseInt(clientFrame.getPolePort().getText()));
             client.listenToServer();
             //отправить имя
             client.sendMessage(clientFrame.getPoleName().getText());
