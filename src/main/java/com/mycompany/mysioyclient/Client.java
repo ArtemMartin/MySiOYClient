@@ -5,12 +5,13 @@
 package com.mycompany.mysioyclient;
 
 /**
- *
  * @author Артем
  */
+
 import java.awt.Color;
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,15 +25,14 @@ public class Client {
     private static PrintWriter out;
     private static BufferedReader in;
     private final AudioPlayer player = new AudioPlayer();
-    private final Crypto crypto = new Crypto();
 
     public Client() {
     }
 
     public Client(String serverAddress, int serverPort) throws IOException {
-        this.socket = new Socket(serverAddress, serverPort);
-        this.out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
-        this.in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+        socket = new Socket(serverAddress, serverPort);
+        out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8), true);
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
     }
 
     public String getTimeName() {
@@ -56,7 +56,7 @@ public class Client {
     // Метод для отправки сообщений на сервер
     public void sendMessage(String message) {
         //закодировать сообщение
-        message = crypto.getCryptoMessage(message);
+        message = Crypto.getCryptoMessage(message);
         out.println(message);
     }
 
@@ -65,9 +65,13 @@ public class Client {
         new Thread(() -> {
             String response;
             try {
+                //получить содержимое файла
+                String str = in.readLine();
+                clientFrame.getPoleChat().setText(Crypto.getDeCryptoMessage(str));
+
                 while ((response = in.readLine()) != null) {
                     //раскодировать сообщение
-                    response = crypto.getDeCryptoMessage(response);
+                    response = Crypto.getDeCryptoMessage(response);
                     clientFrame.getPoleChat().append("\n" + response);
                     cursorPoleChatVNiz();
                     player.playAudio("razriv.wav");
