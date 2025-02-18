@@ -7,27 +7,51 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static  org.apache.commons.lang3.ArrayUtils.shuffle;
+
 /**
- *
  * @author user
  */
 public class Crypto {
 
-    private static final char[] massCrypto = new char[]{'Д', 'Е', '$', 'д',
-            'Ё', 'Ж', 'З', 'И', '%', 'Й', 'К', 'ш', 'щ', 'ъ', 'ы', 'е', 'ё', 'ж',
-            'П', 'Р', 'С', 'Т', 'и', ',', 'й', 'к', 'л', 'Ы', 'Л', 'М', 'Н', 'О',
-            'У', '5', '&', '6', '7', '(', '8', 'Ч', 'Ш', 'Щ', 'Ъ', '-', 'Ю', '\n',
-            'Ц', '4', ';', 'U', 'V', 'W', 'X', 'Y', 'Z', 'p', 'q', 'r', 's', '=',
-            'а', ' ', 'б', 'в', 'г', 'з', '@', 'м', 'н', 'о', 'п', 'В', 'Г', 'Э', '/',
-            'р', 'с', 'т', '*', 'у', 'ф', 'х', 'ц', 'ч', '#', 'ь', 'э', 'ю', 'я', ')',
-            '1', '2', '3', '.', '9', '0', ':', 'w', '>', 'x', 'y', 'z', 't', 'u', 'v',
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-            'P', 'Q', 'R', 'S', 'T', '<', 'Ь', 'А', 'Б', 'Ф', '!', 'Я', 'Х', '№',
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o'
-    };
+    private static final char[] massCrypto = new char[]{'L', '!', 'я', 'b', 'O', 'G', 'б', '7', 'c', ',', 'д',
+            'Е', 'Р', '?', 'Н', ' ', 'Q', 'Ф', 'l', 'd', 'л', 'k', 'E', 'a', 'З', 'ч', 'K', '1', 'ш', 'Ш',
+            'B', 'Э', 'ь', 'Л', '.', 'R', 'В', 'S', 'V', 'Ы', 'т', 'D', '№', '$', 'ж', 'm', '-', '2', 'И',
+            '=', 's', 'ц', 'Г', 'Ь', '0', 'U', 'w', 'f', 'э', 'I', 'к', 'у', 'ё', '\n', 'z', 'м', '/', 'М',
+            'п', '@', 'Й', 'J', '#', 'W', '4', '6', 'o', 'r', 'с', 'X', 'Т', ';', 'о', 'й', 'Щ', 'Y', 'Ъ',
+            'j', 'г', 'i', 'Я', 'g', 'p', '&', 'x', 'С', 'Б', 'Х', '5', 'П', ':', '>', '%', 'A', 'ю', 'х',
+            'H', ')', 'Д', '*', 'р', 'F', '+', 'К', 'н', '8', 't', '9', 'е', 'n', 'y', 'ъ', 'N', 'Ж', 'h',
+            'v', 'и', 'P', 'u', 'А', 'Ю', 'У', 'M', 'e', 'q', 'а', 'Ё', 'T', 'О', '<', 'C', '3', 'з', 'Z',
+            'ы', '(', 'ф', 'Ц', 'щ', 'Ч', 'в',
+};
     private static final DateFormat dateFormat = new SimpleDateFormat("dd");
-    
 
+    public static void main1(String[] args) {
+        //перемешать массив
+        shuffle(massCrypto);
+        for (char c : massCrypto) {
+            System.out.print("'" + c + "'" + ", ");
+        }
+        System.out.println("\n");
+        System.out.println("Mass 'massCrypto' length: " + massCrypto.length);
+
+
+    }
+
+    public static void main(String[] args) {
+        char a;
+        char b;
+        for (int i = 0; i < massCrypto.length; i++) {
+            a = massCrypto[i];
+            for (int j = i + 1; j < massCrypto.length; j++) {
+                b = massCrypto[j];
+                if (a == b) {
+                    System.out.println("Coincidence: " + b);
+                }
+            }
+        }
+        System.out.println("Mass 'massCrypto' length: " + massCrypto.length);
+    }
 
     //разкодировать сообщение
     public static String getDeCryptoMessage(String message) {
